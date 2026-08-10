@@ -307,3 +307,142 @@ body {
     cursor: pointer;
     font-size: 14px;
 }
+.storyboard-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 30px;
+}
+
+.storyboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.storyboard-header h1 {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.storyboard-header p {
+    color: #a7abb7;
+}
+
+.project-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.project-summary div {
+    background: #151821;
+    border: 1px solid #292d38;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.project-summary span,
+.scene-details span,
+.visual-prompt span {
+    display: block;
+    color: #777d8b;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.project-summary strong {
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.scenes {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.scene-card {
+    display: flex;
+    gap: 20px;
+    background: #151821;
+    border: 1px solid #292d38;
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.scene-number {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #111318;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.scene-content {
+    flex: 1;
+}
+
+.scene-content h3 {
+    margin-bottom: 8px;
+}
+
+.scene-content > p {
+    color: #a7abb7;
+    line-height: 1.5;
+}
+
+.scene-details {
+    display: flex;
+    gap: 40px;
+    margin-top: 18px;
+}
+
+.scene-details strong {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.visual-prompt {
+    margin-top: 18px;
+    padding: 14px;
+    background: #0f1117;
+    border-radius: 8px;
+}
+
+.visual-prompt p {
+    color: #9297a5;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.storyboard-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+@media (max-width: 700px) {
+
+    .video-types {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .scene-details {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
