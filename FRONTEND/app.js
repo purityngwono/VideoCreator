@@ -94,6 +94,7 @@ function openCreateScreen() {
     setupCreateScreen();
 }
 
+
 function setupCreateScreen() {
 
     const typeButtons = document.querySelectorAll(".video-type");
@@ -121,11 +122,7 @@ function setupCreateScreen() {
 
     continueBtn.addEventListener("click", () => {
 
-        console.log("Selected video type:", selectedType);
-
-        alert(
-            `You selected: ${selectedType}\n\nThe next screen will let you describe your video.`
-        );
+        openDescriptionScreen(selectedType);
 
     });
 
@@ -133,6 +130,173 @@ function setupCreateScreen() {
         location.reload();
     });
 }
+
+
+function openDescriptionScreen(videoType) {
+
+    document.body.innerHTML = `
+        <header class="navbar">
+            <div class="logo">VideoCreator</div>
+
+            <button class="back-btn" id="backBtn">
+                ← Back
+            </button>
+        </header>
+
+        <main class="description-container">
+
+            <section class="description-header">
+
+                <span class="step-label">
+                    Step 2 of 3
+                </span>
+
+                <h1>Describe your video</h1>
+
+                <p>
+                    Tell VideoCreator what you want to make.
+                    You can be as simple or detailed as you want.
+                </p>
+
+            </section>
+
+            <section class="description-card">
+
+                <label for="videoIdea">
+                    Your video idea
+                </label>
+
+                <textarea
+                    id="videoIdea"
+                    placeholder="Example: A cute bunny learns to count from 1 to 10 while exploring a colourful garden..."
+                ></textarea>
+
+                <div class="character-count">
+                    <span id="characterCount">0</span> characters
+                </div>
+
+            </section>
+
+            <section class="settings-grid">
+
+                <div class="setting">
+
+                    <label for="duration">
+                        Duration
+                    </label>
+
+                    <select id="duration">
+                        <option value="30">30 seconds</option>
+                        <option value="60">60 seconds</option>
+                        <option value="90">90 seconds</option>
+                        <option value="120">2 minutes</option>
+                        <option value="300">5 minutes</option>
+                    </select>
+
+                </div>
+
+                <div class="setting">
+
+                    <label for="aspectRatio">
+                        Aspect ratio
+                    </label>
+
+                    <select id="aspectRatio">
+                        <option value="9:16">9:16 — Vertical</option>
+                        <option value="16:9">16:9 — Landscape</option>
+                        <option value="1:1">1:1 — Square</option>
+                    </select>
+
+                </div>
+
+                <div class="setting">
+
+                    <label for="visualStyle">
+                        Visual style
+                    </label>
+
+                    <select id="visualStyle">
+                        <option value="cinematic">Cinematic</option>
+                        <option value="animated">Animated</option>
+                        <option value="cartoon">Cartoon</option>
+                        <option value="realistic">Realistic</option>
+                        <option value="anime">Anime</option>
+                        <option value="minimal">Minimal</option>
+                    </select>
+
+                </div>
+
+            </section>
+
+            <div class="description-actions">
+
+                <button class="back-secondary-btn" id="backToTypes">
+                    ← Previous
+                </button>
+
+                <button class="continue-btn" id="generatePlanBtn" disabled>
+                    Continue →
+                </button>
+
+            </div>
+
+        </main>
+    `;
+
+    setupDescriptionScreen(videoType);
+}
+
+
+function setupDescriptionScreen(videoType) {
+
+    const videoIdea = document.getElementById("videoIdea");
+    const characterCount = document.getElementById("characterCount");
+    const generatePlanBtn = document.getElementById("generatePlanBtn");
+
+    const backBtn = document.getElementById("backBtn");
+    const backToTypes = document.getElementById("backToTypes");
+
+    videoIdea.addEventListener("input", () => {
+
+        const length = videoIdea.value.length;
+
+        characterCount.textContent = length;
+
+        generatePlanBtn.disabled = videoIdea.value.trim().length === 0;
+
+    });
+
+
+    generatePlanBtn.addEventListener("click", () => {
+
+        const projectData = {
+            type: videoType,
+            idea: videoIdea.value.trim(),
+            duration: document.getElementById("duration").value,
+            aspectRatio: document.getElementById("aspectRatio").value,
+            visualStyle: document.getElementById("visualStyle").value
+        };
+
+        console.log("Project data:", projectData);
+
+        alert(
+            "Project information captured!\\n\\n" +
+            "Our next step will turn this information into a storyboard."
+        );
+
+    });
+
+
+    backBtn.addEventListener("click", () => {
+        location.reload();
+    });
+
+
+    backToTypes.addEventListener("click", () => {
+        openCreateScreen();
+    });
+}
+
 
 newVideoBtn.addEventListener("click", openCreateScreen);
 createBtn.addEventListener("click", openCreateScreen);
