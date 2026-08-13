@@ -1,47 +1,7 @@
-// ========================================
-// VIDEO CREATOR - MAIN APP
-// ========================================
-
-// ========================================
-// GLOBAL STATE
-// ========================================
+const newVideoBtn = document.getElementById("newVideoBtn");
+const createBtn = document.getElementById("createBtn");
 
 let suggestionPage = 0;
-
-
-// ========================================
-// INITIAL APP SETUP
-// ========================================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const newVideoBtn =
-        document.getElementById("newVideoBtn");
-
-    const createBtn =
-        document.getElementById("createBtn");
-
-
-    if (newVideoBtn) {
-
-        newVideoBtn.addEventListener(
-            "click",
-            openCreateScreen
-        );
-
-    }
-
-
-    if (createBtn) {
-
-        createBtn.addEventListener(
-            "click",
-            openCreateScreen
-        );
-
-    }
-
-});
 
 
 // ========================================
@@ -58,10 +18,7 @@ function openCreateScreen() {
                 VideoCreator
             </div>
 
-            <button
-                class="back-btn"
-                id="backBtn"
-            >
+            <button class="back-btn" id="backBtn">
                 ← Back
             </button>
 
@@ -86,136 +43,102 @@ function openCreateScreen() {
 
             <section class="video-types">
 
-                <button
-                    class="video-type"
-                    data-type="story"
-                >
+                <button class="video-type" data-type="story">
+
                     <span class="type-icon">🎬</span>
 
                     <span>
-                        <strong>
-                            Story / Short Film
-                        </strong>
+                        <strong>Story / Short Film</strong>
 
                         <small>
-                            Create cinematic stories and
-                            short films.
+                            Create cinematic stories and short films.
                         </small>
                     </span>
 
                 </button>
 
 
-                <button
-                    class="video-type"
-                    data-type="short"
-                >
+                <button class="video-type" data-type="short">
+
                     <span class="type-icon">📱</span>
 
                     <span>
-                        <strong>
-                            Short-form Video
-                        </strong>
+                        <strong>Short-form Video</strong>
 
                         <small>
-                            Create videos for TikTok,
-                            Shorts and Reels.
+                            Create videos for TikTok, Shorts and Reels.
                         </small>
                     </span>
 
                 </button>
 
 
-                <button
-                    class="video-type"
-                    data-type="kids"
-                >
+                <button class="video-type" data-type="kids">
+
                     <span class="type-icon">🧸</span>
 
                     <span>
-                        <strong>
-                            Kids / Animation
-                        </strong>
+                        <strong>Kids / Animation</strong>
 
                         <small>
-                            Create children's stories,
-                            rhymes and animations.
+                            Create children's stories, rhymes and animations.
                         </small>
                     </span>
 
                 </button>
 
 
-                <button
-                    class="video-type"
-                    data-type="education"
-                >
+                <button class="video-type" data-type="education">
+
                     <span class="type-icon">📚</span>
 
                     <span>
-                        <strong>
-                            Educational
-                        </strong>
+                        <strong>Educational</strong>
 
                         <small>
-                            Turn lessons and ideas into
-                            engaging videos.
+                            Turn lessons and ideas into engaging videos.
                         </small>
                     </span>
 
                 </button>
 
 
-                <button
-                    class="video-type"
-                    data-type="music"
-                >
+                <button class="video-type" data-type="music">
+
                     <span class="type-icon">🎵</span>
 
                     <span>
-                        <strong>
-                            Music / Lyrics
-                        </strong>
+                        <strong>Music / Lyrics</strong>
 
                         <small>
-                            Create lyric and music-focused
-                            videos.
+                            Create lyric and music-focused videos.
                         </small>
                     </span>
 
                 </button>
 
 
-                <button
-                    class="video-type"
-                    data-type="promo"
-                >
+                <button class="video-type" data-type="promo">
+
                     <span class="type-icon">📢</span>
 
                     <span>
-                        <strong>
-                            Promo / Marketing
-                        </strong>
+                        <strong>Promo / Marketing</strong>
 
                         <small>
-                            Create promotional videos
-                            for products or brands.
+                            Create promotional videos for products or brands.
                         </small>
                     </span>
 
                 </button>
 
 
-                <button
-                    class="video-type"
-                    data-type="other"
-                >
+                <button class="video-type" data-type="other">
+
                     <span class="type-icon">✨</span>
 
                     <span>
-                        <strong>
-                            Something Else
-                        </strong>
+                        <strong>Something Else</strong>
 
                         <small>
                             Start with your own idea.
@@ -240,12 +163,9 @@ function openCreateScreen() {
             </div>
 
         </main>
-
     `;
 
-
     setupCreateScreen();
-
 }
 
 
@@ -264,71 +184,50 @@ function setupCreateScreen() {
     const backBtn =
         document.getElementById("backBtn");
 
-
     let selectedType = null;
 
 
     typeButtons.forEach(button => {
 
-        button.addEventListener(
-            "click",
-            () => {
+        button.addEventListener("click", () => {
 
-                typeButtons.forEach(item => {
+            typeButtons.forEach(item => {
 
-                    item.classList.remove(
-                        "selected"
-                    );
+                item.classList.remove("selected");
 
-                });
+            });
 
 
-                button.classList.add(
-                    "selected"
-                );
+            button.classList.add("selected");
 
 
-                selectedType =
-                    button.dataset.type;
+            selectedType =
+                button.dataset.type;
 
 
-                continueBtn.disabled =
-                    false;
+            continueBtn.disabled = false;
 
-            }
+        });
+
+    });
+
+
+    continueBtn.addEventListener("click", () => {
+
+        suggestionPage = 0;
+
+        openSuggestionsScreen(
+            selectedType
         );
 
     });
 
 
-    continueBtn.addEventListener(
-        "click",
-        () => {
+    backBtn.addEventListener("click", () => {
 
-            if (!selectedType) {
-                return;
-            }
+        location.reload();
 
-
-            suggestionPage = 0;
-
-
-            openSuggestionsScreen(
-                selectedType
-            );
-
-        }
-    );
-
-
-    backBtn.addEventListener(
-        "click",
-        () => {
-
-            location.reload();
-
-        }
-    );
+    });
 
 }
 
@@ -358,12 +257,8 @@ function openSuggestionsScreen(videoType) {
 
         suggestionPage = 0;
 
-
         suggestions =
-            allSuggestions.slice(
-                0,
-                4
-            );
+            allSuggestions.slice(0, 4);
 
     }
 
@@ -376,10 +271,7 @@ function openSuggestionsScreen(videoType) {
                 VideoCreator
             </div>
 
-            <button
-                class="back-btn"
-                id="backBtn"
-            >
+            <button class="back-btn" id="backBtn">
                 ← Back
             </button>
 
@@ -399,8 +291,8 @@ function openSuggestionsScreen(videoType) {
                 </h1>
 
                 <p>
-                    Here are some ideas to get you
-                    started. Choose one or create your own.
+                    Here are some ideas to get you started.
+                    Choose one or create your own.
                 </p>
 
             </section>
@@ -408,8 +300,7 @@ function openSuggestionsScreen(videoType) {
 
             <section class="suggestions-grid">
 
-                ${suggestions.map(
-                    (suggestion, index) => `
+                ${suggestions.map((suggestion, index) => `
 
                     <button
                         class="suggestion-card"
@@ -438,8 +329,7 @@ function openSuggestionsScreen(videoType) {
 
                     </button>
 
-                `
-                ).join("")}
+                `).join("")}
 
             </section>
 
@@ -464,7 +354,6 @@ function openSuggestionsScreen(videoType) {
             </section>
 
         </main>
-
     `;
 
 
@@ -935,18 +824,15 @@ function setupSuggestionsScreen(
             ".suggestion-card"
         );
 
-
     const generateMoreBtn =
         document.getElementById(
             "generateMoreBtn"
         );
 
-
     const ownIdeaBtn =
         document.getElementById(
             "ownIdeaBtn"
         );
-
 
     const backBtn =
         document.getElementById(
@@ -962,7 +848,8 @@ function setupSuggestionsScreen(
 
                 const index =
                     Number(
-                        card.dataset.suggestionIndex
+                        card.dataset
+                            .suggestionIndex
                     );
 
 
@@ -986,7 +873,6 @@ function setupSuggestionsScreen(
         () => {
 
             suggestionPage++;
-
 
             openSuggestionsScreen(
                 videoType
@@ -1029,12 +915,6 @@ function openDescriptionScreen(
     selectedSuggestion = null
 ) {
 
-    const idea =
-        selectedSuggestion
-            ? selectedSuggestion.description
-            : "";
-
-
     document.body.innerHTML = `
 
         <header class="navbar">
@@ -1054,6 +934,7 @@ function openDescriptionScreen(
 
 
         <main class="description-container">
+
 
             <section class="description-header">
 
@@ -1077,21 +958,21 @@ function openDescriptionScreen(
                 selectedSuggestion
                     ? `
 
-                    <section class="selected-suggestion">
+                        <section class="selected-suggestion">
 
-                        <span>
-                            ✨ Selected idea
-                        </span>
+                            <span>
+                                ✨ Selected idea
+                            </span>
 
-                        <h3>
-                            ${selectedSuggestion.title}
-                        </h3>
+                            <h3>
+                                ${selectedSuggestion.title}
+                            </h3>
 
-                        <p>
-                            ${selectedSuggestion.description}
-                        </p>
+                            <p>
+                                ${selectedSuggestion.description}
+                            </p>
 
-                    </section>
+                        </section>
 
                     `
                     : ""
@@ -1107,13 +988,21 @@ function openDescriptionScreen(
                 <textarea
                     id="videoIdea"
                     placeholder="Example: A mysterious traveller discovers a hidden city beneath the ocean..."
-                >${idea}</textarea>
+                >${
+                    selectedSuggestion
+                        ? selectedSuggestion.description
+                        : ""
+                }</textarea>
 
 
                 <div class="character-count">
 
                     <span id="characterCount">
-                        ${idea.length}
+                        ${
+                            selectedSuggestion
+                                ? selectedSuggestion.description.length
+                                : 0
+                        }
                     </span>
 
                     characters
@@ -1124,6 +1013,7 @@ function openDescriptionScreen(
 
 
             <section class="settings-grid">
+
 
                 <div class="setting">
 
@@ -1242,8 +1132,8 @@ function openDescriptionScreen(
 
             </div>
 
-        </main>
 
+        </main>
     `;
 
 
@@ -1269,24 +1159,20 @@ function setupDescriptionScreen(
             "videoIdea"
         );
 
-
     const characterCount =
         document.getElementById(
             "characterCount"
         );
-
 
     const generatePlanBtn =
         document.getElementById(
             "generatePlanBtn"
         );
 
-
     const backBtn =
         document.getElementById(
             "backBtn"
         );
-
 
     const backToSuggestions =
         document.getElementById(
@@ -1345,62 +1231,10 @@ function setupDescriptionScreen(
             };
 
 
-            if (
-                typeof generateStoryboard !==
-                "function"
-            ) {
-
-                alert(
-                    "Storyboard engine is not loaded. Check sceneEngine.js."
+            const scenes =
+                generateStoryboard(
+                    projectData
                 );
-
-                return;
-
-            }
-
-
-            let scenes;
-
-
-            try {
-
-                scenes =
-                    generateStoryboard(
-                        projectData
-                    );
-
-            }
-            catch (error) {
-
-                console.error(
-                    error
-                );
-
-
-                alert(
-                    "Could not generate storyboard:\n\n" +
-                    error.message
-                );
-
-
-                return;
-
-            }
-
-
-            if (
-                !scenes ||
-                scenes.length === 0
-            ) {
-
-                alert(
-                    "No scenes were generated."
-                );
-
-
-                return;
-
-            }
 
 
             openStoryboardScreen(
@@ -1455,6 +1289,7 @@ function openStoryboardScreen(
                 VideoCreator
             </div>
 
+
             <button
                 class="back-btn"
                 id="backBtn"
@@ -1467,19 +1302,22 @@ function openStoryboardScreen(
 
         <main class="storyboard-container">
 
+
             <section class="storyboard-header">
 
                 <span class="step-label">
                     Step 4 of 4
                 </span>
 
+
                 <h1>
                     Your Storyboard
                 </h1>
 
+
                 <p>
-                    Here's the structure VideoCreator
-                    created for your video.
+                    Here's the structure VideoCreator created
+                    for your video.
                 </p>
 
             </section>
@@ -1489,37 +1327,25 @@ function openStoryboardScreen(
 
                 <div>
                     <span>Type</span>
-
-                    <strong>
-                        ${project.type}
-                    </strong>
+                    <strong>${project.type}</strong>
                 </div>
 
 
                 <div>
                     <span>Duration</span>
-
-                    <strong>
-                        ${project.duration}s
-                    </strong>
+                    <strong>${project.duration}s</strong>
                 </div>
 
 
                 <div>
                     <span>Format</span>
-
-                    <strong>
-                        ${project.aspectRatio}
-                    </strong>
+                    <strong>${project.aspectRatio}</strong>
                 </div>
 
 
                 <div>
                     <span>Style</span>
-
-                    <strong>
-                        ${project.visualStyle}
-                    </strong>
+                    <strong>${project.visualStyle}</strong>
                 </div>
 
             </section>
@@ -1527,8 +1353,7 @@ function openStoryboardScreen(
 
             <section class="scenes">
 
-                ${scenes.map(
-                    scene => `
+                ${scenes.map(scene => `
 
                     <article class="scene-card">
 
@@ -1595,8 +1420,7 @@ function openStoryboardScreen(
 
                     </article>
 
-                `
-                ).join("")}
+                `).join("")}
 
             </section>
 
@@ -1620,8 +1444,8 @@ function openStoryboardScreen(
 
             </div>
 
-        </main>
 
+        </main>
     `;
 
 
@@ -1654,9 +1478,7 @@ function openStoryboardScreen(
 
 
     document
-        .getElementById(
-            "continueToGeneration"
-        )
+        .getElementById("continueToGeneration")
         .addEventListener(
             "click",
             () => {
@@ -1694,25 +1516,29 @@ function openGenerationScreen(
 
         <main class="generation-container">
 
+
             <section class="generation-header">
 
                 <span class="step-label">
                     Creating your video
                 </span>
 
+
                 <h1>
                     Bringing your idea to life ✨
                 </h1>
 
+
                 <p>
-                    VideoCreator is preparing the
-                    scenes, visuals, audio and captions.
+                    VideoCreator is preparing your
+                    actual video.
                 </p>
 
             </section>
 
 
             <section class="generation-progress-card">
+
 
                 <div class="generation-progress-top">
 
@@ -1750,6 +1576,7 @@ function openGenerationScreen(
 
 
             <section class="generation-tasks">
+
 
                 <div
                     class="generation-task"
@@ -1798,7 +1625,7 @@ function openGenerationScreen(
                         </strong>
 
                         <span>
-                            Preparing visual prompts
+                            Preparing visual scenes
                         </span>
 
                     </div>
@@ -1860,7 +1687,7 @@ function openGenerationScreen(
                         </strong>
 
                         <span>
-                            Matching music to your video
+                            Preparing background music
                         </span>
 
                     </div>
@@ -1905,6 +1732,7 @@ function openGenerationScreen(
 
                 </div>
 
+
             </section>
 
 
@@ -1917,8 +1745,7 @@ function openGenerationScreen(
 
                 <div id="sceneProgressList">
 
-                    ${scenes.map(
-                        scene => `
+                    ${scenes.map(scene => `
 
                         <div
                             class="scene-progress-item"
@@ -1928,7 +1755,6 @@ function openGenerationScreen(
                             <div class="scene-progress-number">
                                 ${scene.number}
                             </div>
-
 
                             <div class="scene-progress-info">
 
@@ -1942,15 +1768,13 @@ function openGenerationScreen(
 
                             </div>
 
-
                             <div class="scene-progress-status">
                                 Waiting
                             </div>
 
                         </div>
 
-                    `
-                    ).join("")}
+                    `).join("")}
 
                 </div>
 
@@ -1972,7 +1796,7 @@ function openGenerationScreen(
                 </h2>
 
                 <p>
-                    The generation pipeline has finished.
+                    The video has been rendered in your browser.
                 </p>
 
                 <button
@@ -1984,12 +1808,12 @@ function openGenerationScreen(
 
             </div>
 
-        </main>
 
+        </main>
     `;
 
 
-    startVideoGeneration(
+    startRealGeneration(
         project,
         scenes
     );
@@ -1998,10 +1822,10 @@ function openGenerationScreen(
 
 
 // ========================================
-// VIDEO GENERATION
+// REAL VIDEO GENERATION
 // ========================================
 
-async function startVideoGeneration(
+async function startRealGeneration(
     project,
     scenes
 ) {
@@ -2011,12 +1835,10 @@ async function startVideoGeneration(
             "overallProgress"
         );
 
-
     const overallPercent =
         document.getElementById(
             "overallPercent"
         );
-
 
     const generationStatus =
         document.getElementById(
@@ -2024,281 +1846,182 @@ async function startVideoGeneration(
         );
 
 
-    function updateProgress(
-        progress,
-        message
-    ) {
-
-        if (overallProgress) {
-
-            overallProgress.style.width =
-                progress + "%";
-
-        }
-
-
-        if (overallPercent) {
-
-            overallPercent.textContent =
-                progress + "%";
-
-        }
-
-
-        if (generationStatus) {
-
-            generationStatus.textContent =
-                message;
-
-        }
-
-    }
-
-
-    function activateTask(name) {
-
-        const task =
-            document.getElementById(
-                "task" + name
-            );
-
-
-        const status =
-            document.getElementById(
-                "status" + name
-            );
-
-
-        if (task) {
-
-            task.classList.add(
-                "active"
-            );
-
-        }
-
-
-        if (status) {
-
-            status.textContent =
-                "Generating...";
-
-        }
-
-    }
-
-
-    function completeTask(name) {
-
-        const task =
-            document.getElementById(
-                "task" + name
-            );
-
-
-        const status =
-            document.getElementById(
-                "status" + name
-            );
-
-
-        if (task) {
-
-            task.classList.remove(
-                "active"
-            );
-
-            task.classList.add(
-                "complete"
-            );
-
-        }
-
-
-        if (status) {
-
-            status.textContent =
-                "Complete";
-
-        }
-
-    }
-
-
-    function updateScene(
-        number,
-        statusText,
-        infoText,
-        complete = false
-    ) {
-
-        const element =
-            document.querySelector(
-                `[data-scene="${number}"]`
-            );
-
-
-        if (!element) {
-            return;
-        }
-
-
-        const status =
-            element.querySelector(
-                ".scene-progress-status"
-            );
-
-
-        const info =
-            element.querySelector(
-                ".scene-progress-info span"
-            );
-
-
-        if (status) {
-
-            status.textContent =
-                statusText;
-
-        }
-
-
-        if (info) {
-
-            info.textContent =
-                infoText;
-
-        }
-
-
-        if (complete) {
-
-            element.classList.remove(
-                "active"
-            );
-
-            element.classList.add(
-                "complete"
-            );
-
-        }
-        else {
-
-            element.classList.add(
-                "active"
-            );
-
-        }
-
-    }
-
-
     try {
 
-        // ====================================
+        // --------------------------------
         // PREPARE SCENES
-        // ====================================
+        // --------------------------------
 
-        activateTask("Scenes");
-
-
-        updateProgress(
-            5,
-            "Preparing your storyboard..."
-        );
+        setTaskActive("Scenes");
 
 
-        await wait(700);
+        for (
+            let i = 0;
+            i < scenes.length;
+            i++
+        ) {
+
+            const scene =
+                scenes[i];
 
 
-        scenes.forEach(scene => {
+            const sceneElement =
+                document.querySelector(
+                    `[data-scene="${scene.number}"]`
+                );
 
-            updateScene(
-                scene.number,
-                "Ready",
-                "Scene prepared",
-                true
+
+            if (sceneElement) {
+
+                const status =
+                    sceneElement.querySelector(
+                        ".scene-progress-status"
+                    );
+
+                const info =
+                    sceneElement.querySelector(
+                        ".scene-progress-info span"
+                    );
+
+
+                if (status) {
+                    status.textContent =
+                        "Generating...";
+                }
+
+
+                if (info) {
+                    info.textContent =
+                        "Preparing scene...";
+                }
+
+
+                sceneElement.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            const progress =
+                5 +
+                Math.round(
+                    ((i + 1) / scenes.length) * 25
+                );
+
+
+            updateProgress(
+                progress,
+                `Preparing scene ${i + 1} of ${scenes.length}...`
             );
 
-        });
+
+            await wait(500);
 
 
-        completeTask("Scenes");
+            if (sceneElement) {
+
+                const status =
+                    sceneElement.querySelector(
+                        ".scene-progress-status"
+                    );
+
+                const info =
+                    sceneElement.querySelector(
+                        ".scene-progress-info span"
+                    );
 
 
-        // ====================================
+                if (status) {
+                    status.textContent =
+                        "Complete";
+                }
+
+
+                if (info) {
+                    info.textContent =
+                        "Scene ready";
+                }
+
+
+                sceneElement.classList.remove(
+                    "active"
+                );
+
+                sceneElement.classList.add(
+                    "complete"
+                );
+
+            }
+
+        }
+
+
+        setTaskComplete("Scenes");
+
+
+        // --------------------------------
         // VISUALS
-        // ====================================
+        // --------------------------------
 
-        activateTask("Visuals");
+        setTaskActive("Visuals");
 
 
         updateProgress(
-            45,
+            40,
             "Preparing visual assets..."
         );
 
 
-        await wait(800);
+        await wait(1000);
 
 
-        scenes.forEach(scene => {
-
-            updateScene(
-                scene.number,
-                "Visual ready",
-                "Visual asset prepared"
-            );
-
-        });
+        setTaskComplete("Visuals");
 
 
-        completeTask("Visuals");
-
-
-        // ====================================
+        // --------------------------------
         // VOICE
-        // ====================================
+        // --------------------------------
 
-        activateTask("Voice");
+        setTaskActive("Voice");
 
 
         updateProgress(
-            60,
+            55,
             "Preparing narration..."
         );
 
 
-        await wait(800);
+        await wait(1000);
 
 
-        completeTask("Voice");
+        setTaskComplete("Voice");
 
 
-        // ====================================
+        // --------------------------------
         // MUSIC
-        // ====================================
+        // --------------------------------
 
-        activateTask("Music");
+        setTaskActive("Music");
 
 
         updateProgress(
-            72,
+            70,
             "Preparing background music..."
         );
 
 
-        await wait(700);
+        await wait(1000);
 
 
-        completeTask("Music");
+        setTaskComplete("Music");
 
 
-        // ====================================
+        // --------------------------------
         // CAPTIONS
-        // ====================================
+        // --------------------------------
 
-        activateTask("Captions");
+        setTaskActive("Captions");
 
 
         updateProgress(
@@ -2307,19 +2030,19 @@ async function startVideoGeneration(
         );
 
 
-        await wait(700);
+        await wait(1000);
 
 
-        completeTask("Captions");
+        setTaskComplete("Captions");
 
 
-        // ====================================
-        // RENDER
-        // ====================================
+        // --------------------------------
+        // ACTUAL VIDEO
+        // --------------------------------
 
         updateProgress(
             90,
-            "Rendering video..."
+            "Rendering your video..."
         );
 
 
@@ -2327,19 +2050,28 @@ async function startVideoGeneration(
             await renderBrowserVideo(
                 project,
                 scenes,
-                updateProgress,
-                updateScene
+                progress => {
+
+                    updateProgress(
+                        90 +
+                        Math.round(
+                            progress * 0.1
+                        ),
+                        `Rendering video... ${Math.round(progress)}%`
+                    );
+
+                }
             );
 
-
-        // ====================================
-        // COMPLETE
-        // ====================================
 
         updateProgress(
             100,
             "Everything is ready!"
         );
+
+
+        window.generatedVideoUrl =
+            videoUrl;
 
 
         const complete =
@@ -2383,21 +2115,144 @@ async function startVideoGeneration(
     catch (error) {
 
         console.error(
-            "Video generation failed:",
+            "Video generation error:",
             error
         );
 
 
-        updateProgress(
-            0,
-            "Video generation failed."
-        );
-
+        generationStatus.textContent =
+            "Something went wrong while rendering the video.";
 
         alert(
-            "Video generation failed:\n\n" +
-            error.message
+            "Video generation failed. Open the browser console to see the error."
         );
+
+    }
+
+}
+
+
+// ========================================
+// PROGRESS
+// ========================================
+
+function updateProgress(
+    progress,
+    message
+) {
+
+    const bar =
+        document.getElementById(
+            "overallProgress"
+        );
+
+    const percent =
+        document.getElementById(
+            "overallPercent"
+        );
+
+    const status =
+        document.getElementById(
+            "generationStatus"
+        );
+
+
+    if (bar) {
+
+        bar.style.width =
+            progress + "%";
+
+    }
+
+
+    if (percent) {
+
+        percent.textContent =
+            progress + "%";
+
+    }
+
+
+    if (status) {
+
+        status.textContent =
+            message;
+
+    }
+
+}
+
+
+// ========================================
+// TASK STATUS
+// ========================================
+
+function setTaskActive(
+    name
+) {
+
+    const task =
+        document.getElementById(
+            "task" + name
+        );
+
+    const status =
+        document.getElementById(
+            "status" + name
+        );
+
+
+    if (task) {
+
+        task.classList.add(
+            "active"
+        );
+
+    }
+
+
+    if (status) {
+
+        status.textContent =
+            "Generating...";
+
+    }
+
+}
+
+
+function setTaskComplete(
+    name
+) {
+
+    const task =
+        document.getElementById(
+            "task" + name
+        );
+
+    const status =
+        document.getElementById(
+            "status" + name
+        );
+
+
+    if (task) {
+
+        task.classList.remove(
+            "active"
+        );
+
+        task.classList.add(
+            "complete"
+        );
+
+    }
+
+
+    if (status) {
+
+        status.textContent =
+            "Complete";
 
     }
 
@@ -2411,8 +2266,7 @@ async function startVideoGeneration(
 async function renderBrowserVideo(
     project,
     scenes,
-    updateProgress,
-    updateScene
+    onProgress
 ) {
 
     return new Promise(
@@ -2420,15 +2274,15 @@ async function renderBrowserVideo(
 
             try {
 
-                // ====================================
-                // CANVAS SIZE
-                // ====================================
-
                 const canvas =
                     document.createElement(
                         "canvas"
                     );
 
+
+                // --------------------------------
+                // VIDEO SIZE
+                // --------------------------------
 
                 if (
                     project.aspectRatio ===
@@ -2444,8 +2298,8 @@ async function renderBrowserVideo(
                     "1:1"
                 ) {
 
-                    canvas.width = 1080;
-                    canvas.height = 1080;
+                    canvas.width = 720;
+                    canvas.height = 720;
 
                 }
                 else {
@@ -2462,45 +2316,27 @@ async function renderBrowserVideo(
                     );
 
 
-                if (!ctx) {
-
-                    throw new Error(
-                        "Could not create video canvas."
-                    );
-
-                }
-
-
-                // ====================================
-                // MIME TYPE
-                // ====================================
-
-                const mimeType =
-                    getSupportedMimeType();
-
-
-                if (!mimeType) {
-
-                    throw new Error(
-                        "Your browser does not support video recording."
-                    );
-
-                }
-
-
                 const stream =
                     canvas.captureStream(
                         30
                     );
 
 
+                const mimeType =
+                    getSupportedVideoMimeType();
+
+
                 const recorder =
-                    new MediaRecorder(
-                        stream,
-                        {
-                            mimeType
-                        }
-                    );
+                    mimeType
+                        ? new MediaRecorder(
+                            stream,
+                            {
+                                mimeType
+                            }
+                        )
+                        : new MediaRecorder(
+                            stream
+                        );
 
 
                 const chunks = [];
@@ -2544,7 +2380,8 @@ async function renderBrowserVideo(
                                 chunks,
                                 {
                                     type:
-                                        recorder.mimeType
+                                        recorder.mimeType ||
+                                        "video/webm"
                                 }
                             );
 
@@ -2565,9 +2402,9 @@ async function renderBrowserVideo(
                 recorder.start();
 
 
-                // ====================================
+                // --------------------------------
                 // RENDER SCENES
-                // ====================================
+                // --------------------------------
 
                 for (
                     let i = 0;
@@ -2579,14 +2416,7 @@ async function renderBrowserVideo(
                         scenes[i];
 
 
-                    updateScene(
-                        scene.number,
-                        "Rendering",
-                        "Creating video frames"
-                    );
-
-
-                    await renderSceneToCanvas(
+                    await renderScene(
                         ctx,
                         canvas,
                         project,
@@ -2594,41 +2424,35 @@ async function renderBrowserVideo(
                     );
 
 
-                    updateScene(
-                        scene.number,
-                        "Complete",
-                        "Scene rendered",
-                        true
-                    );
-
-
                     const progress =
-                        90 +
-                        Math.round(
-                            ((i + 1) /
-                            scenes.length) *
-                            9
+                        (
+                            (i + 1) /
+                            scenes.length
+                        ) * 100;
+
+
+                    if (
+                        typeof onProgress ===
+                        "function"
+                    ) {
+
+                        onProgress(
+                            progress
                         );
 
-
-                    updateProgress(
-                        progress,
-                        `Rendering scene ${i + 1} of ${scenes.length}...`
-                    );
+                    }
 
                 }
 
-
-                // ====================================
-                // STOP
-                // ====================================
 
                 recorder.stop();
 
             }
             catch (error) {
 
-                reject(error);
+                reject(
+                    error
+                );
 
             }
 
@@ -2639,10 +2463,10 @@ async function renderBrowserVideo(
 
 
 // ========================================
-// RENDER SCENE
+// RENDER ONE SCENE
 // ========================================
 
-async function renderSceneToCanvas(
+async function renderScene(
     ctx,
     canvas,
     project,
@@ -2652,16 +2476,18 @@ async function renderSceneToCanvas(
     const duration =
         Math.max(
             2,
-            Number(scene.duration) || 5
+            Number(
+                scene.duration
+            ) || 5
         );
 
 
-    const frameRate = 30;
+    const fps = 30;
 
 
     const totalFrames =
         duration *
-        frameRate;
+        fps;
 
 
     for (
@@ -2685,8 +2511,7 @@ async function renderSceneToCanvas(
 
 
         await wait(
-            1000 /
-            frameRate
+            1000 / fps
         );
 
     }
@@ -2709,30 +2534,13 @@ function drawSceneFrame(
     const width =
         canvas.width;
 
-
     const height =
         canvas.height;
 
 
-    // ====================================
+    // --------------------------------
     // BACKGROUND
-    // ====================================
-
-    ctx.fillStyle =
-        "#101014";
-
-
-    ctx.fillRect(
-        0,
-        0,
-        width,
-        height
-    );
-
-
-    // ====================================
-    // ACCENT
-    // ====================================
+    // --------------------------------
 
     const gradient =
         ctx.createLinearGradient(
@@ -2745,13 +2553,13 @@ function drawSceneFrame(
 
     gradient.addColorStop(
         0,
-        "#191923"
+        "#111111"
     );
 
 
     gradient.addColorStop(
         1,
-        "#08080c"
+        "#252525"
     );
 
 
@@ -2767,136 +2575,142 @@ function drawSceneFrame(
     );
 
 
-    // ====================================
-    // BRAND
-    // ====================================
+    // --------------------------------
+    // TOP BRAND
+    // --------------------------------
 
     ctx.fillStyle =
         "#ffffff";
 
 
     ctx.font =
-        "bold 32px Arial";
+        "bold 28px Arial";
 
 
     ctx.fillText(
         "VideoCreator",
-        60,
-        70
+        50,
+        60
     );
 
 
-    // ====================================
+    // --------------------------------
     // SCENE NUMBER
-    // ====================================
+    // --------------------------------
 
     ctx.fillStyle =
-        "#999999";
+        "#aaaaaa";
 
-
-    ctx.font =
-        "24px Arial";
-
-
-    ctx.fillText(
-        `Scene ${scene.number}`,
-        60,
-        115
-    );
-
-
-    // ====================================
-    // TITLE
-    // ====================================
-
-    ctx.fillStyle =
-        "#ffffff";
-
-
-    ctx.font =
-        "bold 58px Arial";
-
-
-    wrapText(
-        ctx,
-        scene.title ||
-            "Untitled Scene",
-        60,
-        220,
-        width - 120,
-        70
-    );
-
-
-    // ====================================
-    // DESCRIPTION
-    // ====================================
-
-    ctx.font =
-        "30px Arial";
-
-
-    ctx.fillStyle =
-        "#dddddd";
-
-
-    wrapText(
-        ctx,
-        scene.description ||
-            "",
-        60,
-        370,
-        width - 120,
-        44
-    );
-
-
-    // ====================================
-    // STYLE
-    // ====================================
 
     ctx.font =
         "20px Arial";
 
 
+    ctx.fillText(
+        `Scene ${scene.number}`,
+        50,
+        95
+    );
+
+
+    // --------------------------------
+    // TITLE
+    // --------------------------------
+
+    ctx.fillStyle =
+        "#ffffff";
+
+
+    ctx.font =
+        "bold 48px Arial";
+
+
+    drawWrappedText(
+        ctx,
+        scene.title ||
+            "Untitled Scene",
+        50,
+        190,
+        width - 100,
+        60
+    );
+
+
+    // --------------------------------
+    // DESCRIPTION
+    // --------------------------------
+
+    ctx.fillStyle =
+        "#dddddd";
+
+
+    ctx.font =
+        "25px Arial";
+
+
+    drawWrappedText(
+        ctx,
+        scene.description ||
+            "",
+        50,
+        340,
+        width - 100,
+        40
+    );
+
+
+    // --------------------------------
+    // VISUAL PROMPT
+    // --------------------------------
+
     ctx.fillStyle =
         "#888888";
 
 
-    ctx.fillText(
-        `Style: ${
-            project.visualStyle ||
-            "cinematic"
-        }`,
-        60,
-        500
-    );
+    ctx.font =
+        "18px Arial";
 
 
-    // ====================================
-    // VISUAL PROMPT
-    // ====================================
-
-    wrapText(
+    drawWrappedText(
         ctx,
         scene.visualPrompt ||
             "",
-        60,
-        560,
-        width - 120,
-        32
+        50,
+        height - 180,
+        width - 100,
+        30
     );
 
 
-    // ====================================
+    // --------------------------------
+    // NARRATION
+    // --------------------------------
+
+    ctx.fillStyle =
+        "#ffffff";
+
+
+    ctx.font =
+        "italic 20px Arial";
+
+
+    drawWrappedText(
+        ctx,
+        scene.narration ||
+            "",
+        50,
+        height - 100,
+        width - 100,
+        30
+    );
+
+
+    // --------------------------------
     // PROGRESS BAR
-    // ====================================
+    // --------------------------------
 
     const barWidth =
-        width - 120;
-
-
-    const barHeight = 8;
+        width - 100;
 
 
     ctx.fillStyle =
@@ -2904,10 +2718,10 @@ function drawSceneFrame(
 
 
     ctx.fillRect(
-        60,
-        height - 60,
+        50,
+        height - 40,
         barWidth,
-        barHeight
+        6
     );
 
 
@@ -2916,59 +2730,20 @@ function drawSceneFrame(
 
 
     ctx.fillRect(
-        60,
-        height - 60,
+        50,
+        height - 40,
         barWidth * progress,
-        barHeight
+        6
     );
 
 }
 
 
 // ========================================
-// MIME TYPE
+// TEXT WRAPPING
 // ========================================
 
-function getSupportedMimeType() {
-
-    const types = [
-
-        "video/webm;codecs=vp9",
-
-        "video/webm;codecs=vp8",
-
-        "video/webm"
-
-    ];
-
-
-    for (
-        const type of types
-    ) {
-
-        if (
-            MediaRecorder.isTypeSupported(
-                type
-            )
-        ) {
-
-            return type;
-
-        }
-
-    }
-
-
-    return "";
-
-}
-
-
-// ========================================
-// TEXT WRAPPER
-// ========================================
-
-function wrapText(
+function drawWrappedText(
     ctx,
     text,
     x,
@@ -2986,7 +2761,8 @@ function wrapText(
         String(text).split(" ");
 
 
-    let line = "";
+    let line =
+        "";
 
 
     for (
@@ -3009,7 +2785,7 @@ function wrapText(
 
         if (
             metrics.width >
-            maxWidth &&
+                maxWidth &&
             i > 0
         ) {
 
@@ -3049,17 +2825,61 @@ function wrapText(
 
 
 // ========================================
+// VIDEO MIME TYPE
+// ========================================
+
+function getSupportedVideoMimeType() {
+
+    const types = [
+
+        "video/webm;codecs=vp9",
+
+        "video/webm;codecs=vp8",
+
+        "video/webm"
+
+    ];
+
+
+    for (
+        const type of types
+    ) {
+
+        if (
+            MediaRecorder.isTypeSupported(
+                type
+            )
+        ) {
+
+            return type;
+
+        }
+
+    }
+
+
+    return "";
+
+}
+
+
+// ========================================
 // WAIT
 // ========================================
 
-function wait(milliseconds) {
+function wait(
+    milliseconds
+) {
 
     return new Promise(
-        resolve =>
+        resolve => {
+
             setTimeout(
                 resolve,
                 milliseconds
-            )
+            );
+
+        }
     );
 
 }
@@ -3095,6 +2915,7 @@ function openPreviewScreen(
 
         <main class="preview-container">
 
+
             <section class="preview-header">
 
                 <span class="step-label">
@@ -3114,19 +2935,23 @@ function openPreviewScreen(
 
             <section class="video-preview-card">
 
+
                 ${
                     videoUrl
-                        ? `
+                        ?
+
+                    `
 
                         <video
-                            id="generatedVideo"
+                            id="realVideo"
                             controls
                             playsinline
                             style="
                                 width:100%;
-                                max-width:900px;
-                                border-radius:16px;
+                                max-width:1000px;
                                 display:block;
+                                margin:auto;
+                                border-radius:16px;
                                 background:#000;
                             "
                         >
@@ -3136,30 +2961,58 @@ function openPreviewScreen(
                                 type="video/webm"
                             >
 
-                            Your browser does not support
-                            video playback.
+                            Your browser does not
+                            support video playback.
 
                         </video>
 
-                        `
-                        : ""
+                    `
+
+                        :
+
+                    `
+
+                        <div class="fake-video-player">
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                            <div class="video-player-label">
+                                Video unavailable
+                            </div>
+
+                        </div>
+
+                    `
                 }
 
 
                 <div class="preview-controls">
 
+
                     ${
                         videoUrl
-                            ? `
+                            ?
 
-                            <button
-                                id="playPreviewBtn"
+                        `
+
+                            <a
+                                href="${videoUrl}"
+                                download="videocreator-video.webm"
+                                class="continue-btn"
+                                style="
+                                    text-decoration:none;
+                                    display:inline-block;
+                                "
                             >
-                                ▶ Play Preview
-                            </button>
+                                ⬇ Download Video
+                            </a>
 
-                            `
-                            : ""
+                        `
+
+                            :
+                            ""
                     }
 
 
@@ -3171,10 +3024,12 @@ function openPreviewScreen(
 
                 </div>
 
+
             </section>
 
 
             <section class="preview-summary">
+
 
                 <div>
 
@@ -3227,27 +3082,11 @@ function openPreviewScreen(
 
                 </div>
 
+
             </section>
 
 
             <div class="preview-actions">
-
-                ${
-                    videoUrl
-                        ? `
-
-                        <a
-                            href="${videoUrl}"
-                            download="videocreator-preview.webm"
-                            class="continue-btn"
-                        >
-                            ⬇ Download Video
-                        </a>
-
-                        `
-                        : ""
-                }
-
 
                 <button
                     class="back-secondary-btn"
@@ -3258,24 +3097,14 @@ function openPreviewScreen(
 
             </div>
 
-        </main>
 
+        </main>
     `;
 
 
-    // ====================================
-    // BACK
-    // ====================================
-
-    const backBtn =
-        document.getElementById(
-            "backBtn"
-        );
-
-
-    if (backBtn) {
-
-        backBtn.addEventListener(
+    document
+        .getElementById("backBtn")
+        .addEventListener(
             "click",
             () => {
 
@@ -3287,74 +3116,10 @@ function openPreviewScreen(
             }
         );
 
-    }
 
-
-    // ====================================
-    // PLAY
-    // ====================================
-
-    const playPreviewBtn =
-        document.getElementById(
-            "playPreviewBtn"
-        );
-
-
-    if (playPreviewBtn) {
-
-        playPreviewBtn.addEventListener(
-            "click",
-            () => {
-
-                const video =
-                    document.getElementById(
-                        "generatedVideo"
-                    );
-
-
-                if (!video) {
-                    return;
-                }
-
-
-                if (video.paused) {
-
-                    video.play();
-
-
-                    playPreviewBtn.textContent =
-                        "⏸ Pause Preview";
-
-                }
-                else {
-
-                    video.pause();
-
-
-                    playPreviewBtn.textContent =
-                        "▶ Play Preview";
-
-                }
-
-            }
-        );
-
-    }
-
-
-    // ====================================
-    // EDIT
-    // ====================================
-
-    const editVideoBtn =
-        document.getElementById(
-            "editVideoBtn"
-        );
-
-
-    if (editVideoBtn) {
-
-        editVideoBtn.addEventListener(
+    document
+        .getElementById("editVideoBtn")
+        .addEventListener(
             "click",
             () => {
 
@@ -3366,22 +3131,10 @@ function openPreviewScreen(
             }
         );
 
-    }
 
-
-    // ====================================
-    // NEW PROJECT
-    // ====================================
-
-    const newProjectBtn =
-        document.getElementById(
-            "newProjectBtn"
-        );
-
-
-    if (newProjectBtn) {
-
-        newProjectBtn.addEventListener(
+    document
+        .getElementById("newProjectBtn")
+        .addEventListener(
             "click",
             () => {
 
@@ -3390,6 +3143,28 @@ function openPreviewScreen(
             }
         );
 
-    }
+}
+
+
+// ========================================
+// INITIAL BUTTONS
+// ========================================
+
+if (newVideoBtn) {
+
+    newVideoBtn.addEventListener(
+        "click",
+        openCreateScreen
+    );
+
+}
+
+
+if (createBtn) {
+
+    createBtn.addEventListener(
+        "click",
+        openCreateScreen
+    );
 
 }

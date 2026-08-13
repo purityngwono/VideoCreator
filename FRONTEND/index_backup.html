@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VideoCreator</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">VideoCreator</div>
+
+        <button id="newVideoBtn" class="new-video-btn">
+            + New Video
+        </button>
+    </header>
+
+    <main class="container">
+
+        <!-- HOME -->
+        <section id="homeScreen">
+
+            <section class="hero">
+
+                <div class="hero-badge">
+                    ✨ AI Video Creator
+                </div>
+
+                <h1>
+                    Turn your idea<br>
+                    into a video.
+                </h1>
+
+                <p>
+                    Create stories, shorts, animations, educational videos,
+                    music videos and more.
+                </p>
+
+                <button id="createBtn" class="create-btn">
+                    + Create New Video
+                </button>
+
+            </section>
+
+            <section class="projects-section">
+
+                <h2>Recent Projects</h2>
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">🎬</div>
+
+                    <h3>No projects yet</h3>
+
+                    <p>
+                        Your created videos will appear here.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- CREATOR -->
+        <section id="creatorScreen" class="hidden">
+
+            <div class="creator-header">
+
+                <button id="backBtn" class="back-btn">
+                    ← Back
+                </button>
+
+                <div>
+                    <h1>Create your video</h1>
+                    <p>Build your video step by step.</p>
+                </div>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-container">
+
+                <div class="progress-step active">
+                    <span>1</span>
+                    <label>Category</label>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <span>2</span>
+                    <label>Your Idea</label>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <span>3</span>
+                    <label>Suggestions</label>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <span>4</span>
+                    <label>Character & Style</label>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <span>5</span>
+                    <label>Storyboard</label>
+                </div>
+
+            </div>
+
+
+            <!-- STEP CONTENT -->
+
+            <div id="stepContent">
+
+                <!-- STEP 1 -->
+
+                <section id="step1" class="creator-step">
+
+                    <div class="step-heading">
+                        <span class="step-label">STEP 1</span>
+
+                        <h2>
+                            What kind of video are you creating?
+                        </h2>
+
+                        <p>
+                            Choose a category so VideoCreator can tailor
+                            the creative process to your video.
+                        </p>
+                    </div>
+
+
+                    <div class="category-grid">
+
+                        <button class="category-card" data-category="kids">
+                            <span class="category-icon">🧸</span>
+                            <strong>Kids</strong>
+                            <small>
+                                Nursery rhymes, children's stories,
+                                cartoons and fun adventures.
+                            </small>
+                        </button>
+
+
+                        <button class="category-card" data-category="education">
+                            <span class="category-icon">📚</span>
+                            <strong>Education</strong>
+                            <small>
+                                Lessons, explainers, tutorials and
+                                educational content.
+                            </small>
+                        </button>
+
+
+                        <button class="category-card" data-category="comedy">
+                            <span class="category-icon">😂</span>
+                            <strong>Comedy</strong>
+                            <small>
+                                Funny stories, skits, jokes, memes
+                                and entertaining videos.
+                            </small>
+                        </button>
+
+
+                        <button class="category-card" data-category="music">
+                            <span class="category-icon">🎵</span>
+                            <strong>Music</strong>
+                            <small>
+                                Music videos, lyric videos,
+                                visualizers and performances.
+                            </small>
+                        </button>
+
+
+                        <button class="category-card" data-category="film">
+                            <span class="category-icon">🎬</span>
+                            <strong>Story / Film</strong>
+                            <small>
+                                Short films, cinematic stories
+                                and fictional adventures.
+                            </small>
+                        </button>
+
+
+                        <button class="category-card" data-category="social">
+                            <span class="category-icon">📱</span>
+                            <strong>Social Media</strong>
+                            <small>
+                                TikToks, YouTube Shorts, Reels
+                                and other short-form videos.
+                            </small>
+                        </button>
+
+
+                        <button class="category-card" data-category="other">
+                            <span class="category-icon">✨</span>
+                            <strong>Other</strong>
+                            <small>
+                                Something completely different?
+                                Start from your own idea.
+                            </small>
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- STEP 2 -->
+
+                <section id="step2" class="creator-step hidden">
+
+                    <div class="step-heading">
+
+                        <span class="step-label">STEP 2</span>
+
+                        <h2>
+                            What's your video about?
+                        </h2>
+
+                        <p>
+                            Describe your idea and we'll help turn it
+                            into a complete video concept.
+                        </p>
+
+                    </div>
+
+
+                    <textarea
+                        id="ideaInput"
+                        class="idea-input"
+                        placeholder="Example: A cute white bunny goes on an adventure in a magical forest..."
+                    ></textarea>
+
+
+                    <div class="suggestion-box">
+
+                        <h3>💡 Need inspiration?</h3>
+
+                        <div id="ideaSuggestions" class="idea-suggestions">
+
+                            <button class="idea-suggestion">
+                                A cute bunny exploring a magical forest
+                            </button>
+
+                            <button class="idea-suggestion">
+                                A funny adventure with three animal friends
+                            </button>
+
+                            <button class="idea-suggestion">
+                                A short educational video about space
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="step-actions">
+
+                        <button id="ideaBackBtn" class="secondary-btn">
+                            ← Back
+                        </button>
+
+                        <button id="ideaContinueBtn" class="primary-btn">
+                            Continue →
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- STEP 3 -->
+
+                <section id="step3" class="creator-step hidden">
+
+                    <div class="step-heading">
+
+                        <span class="step-label">STEP 3</span>
+
+                        <h2>
+                            Let's improve your idea.
+                        </h2>
+
+                        <p>
+                            Choose a direction or create your own.
+                        </p>
+
+                    </div>
+
+
+                    <div id="suggestionCards" class="suggestion-cards">
+
+                    </div>
+
+
+                    <div class="step-actions">
+
+                        <button id="suggestionBackBtn" class="secondary-btn">
+                            ← Back
+                        </button>
+
+                        <button id="suggestionContinueBtn" class="primary-btn">
+                            Continue →
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- STEP 4 -->
+
+                <section id="step4" class="creator-step hidden">
+
+                    <div class="step-heading">
+
+                        <span class="step-label">STEP 4</span>
+
+                        <h2>
+                            Choose your character & style.
+                        </h2>
+
+                        <p>
+                            Your character will remain consistent
+                            throughout the video.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character-section">
+
+                        <h3>Character</h3>
+
+                        <div id="characterOptions" class="character-options">
+
+                            <button class="character-card selected">
+                                <div class="character-preview bunny">
+                                    🐰
+                                </div>
+                                <strong>Cute Bunny</strong>
+                            </button>
+
+                            <button class="character-card">
+                                <div class="character-preview">
+                                    🦊
+                                </div>
+                                <strong>Friendly Fox</strong>
+                            </button>
+
+                            <button class="character-card">
+                                <div class="character-preview">
+                                    🐻
+                                </div>
+                                <strong>Little Bear</strong>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="style-section">
+
+                        <h3>Visual Style</h3>
+
+                        <div class="style-options">
+
+                            <button class="style-card selected">
+                                🎨
+                                <strong>3D Cartoon</strong>
+                            </button>
+
+                            <button class="style-card">
+                                ✏️
+                                <strong>2D Cartoon</strong>
+                            </button>
+
+                            <button class="style-card">
+                                🌈
+                                <strong>Storybook</strong>
+                            </button>
+
+                            <button class="style-card">
+                                🎥
+                                <strong>Cinematic</strong>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="step-actions">
+
+                        <button id="characterBackBtn" class="secondary-btn">
+                            ← Back
+                        </button>
+
+                        <button id="characterContinueBtn" class="primary-btn">
+                            Continue →
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- STEP 5 -->
+
+                <section id="step5" class="creator-step hidden">
+
+                    <div class="step-heading">
+
+                        <span class="step-label">STEP 5</span>
+
+                        <h2>
+                            Your storyboard
+                        </h2>
+
+                        <p>
+                            Review each scene before moving on to
+                            actual generation.
+                        </p>
+
+                    </div>
+
+
+                    <div id="storyboardContainer">
+
+                    </div>
+
+
+                    <div class="step-actions">
+
+                        <button id="storyboardBackBtn" class="secondary-btn">
+                            ← Back
+                        </button>
+
+                        <button id="approveStoryboardBtn" class="primary-btn">
+                            ✓ Approve Storyboard
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- IMPORTANT: scripts load AFTER the HTML -->
+
+    <script src="./sceneengine.js"></script>
+    <script src="./generationState.js"></script>
+    <script src="./app.js"></script>
+
+</body>
+</html>
